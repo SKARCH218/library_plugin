@@ -1,0 +1,86 @@
+messages:
+  plugin_enabled: "§a도서관 플러그인이 활성화되었습니다."
+  plugin_disabled: "§c도서관 플러그인이 비활성화되었습니다."
+  no_permission: "§c권한이 없습니다."
+  player_only_command: "§c이 명령어는 플레이어만 사용할 수 있습니다."
+
+  book_command:
+    usage: "§c사용법: /책 <등록|수정|삭제>"
+    invalid_book_id: "§c유효한 책 ID를 입력해주세요."
+    not_found: "§c해당 ID의 책을 찾을 수 없습니다."
+    no_permission_to_edit: "§c이 책을 수정할 권한이 없습니다."
+    no_permission_to_delete: "§c이 책을 삭제할 권한이 없습니다."
+    unknown_subcommand: "§c알 수 없는 명령어입니다. 사용법: /책 <등록|수정|삭제>"
+    register:
+      no_book_in_hand: "§c손에 등록할 책(WRITTEN_BOOK)을 들어주세요."
+      empty_title: "§c책의 제목이 비어있습니다. 제목을 설정해주세요."
+      empty_content: "§c책의 내용이 비어있습니다. 내용을 작성해주세요."
+      success: "§a성공적으로 책을 등록했습니다! (ID: %book_id%)"
+      error: "§c책 등록 중 오류가 발생했습니다: %error_message%"
+    edit:
+      usage: "§c사용법: /책 수정 <책_ID>"
+      no_book_in_hand: "§c손에 수정할 책(WRITTEN_BOOK)을 들어주세요."
+      success: "§a성공적으로 책을 수정했습니다! (ID: %book_id%)"
+      error: "§c책 수정 중 오류가 발생했습니다: %error_message%"
+    delete:
+      usage: "§c사용법: /책 삭제 <책_ID>"
+      success: "§a성공적으로 책을 삭제했습니다! (ID: %book_id%)"
+      error: "§c책 삭제 중 오류가 발생했습니다: %error_message%"
+
+  rating:
+    already_rated: "§c이미 이 책에 별점을 주셨습니다."
+    success: "§a성공적으로 별점 %rating%점을 주셨습니다!"
+
+  reward:
+    first_4_star_achieved: "§b당신의 책 '%book_title%'이 평균 별점 4점 이상을 달성하여 보상을 받았습니다!"
+    five_star_achieved: "§b당신의 책 '%book_title%'이 10명 이상에게 평가받고 평균 4점 이상을 달성하여 5점 별점 보상을 받았습니다!"
+
+  gui:
+    library:
+      book_lore:
+        author: "§7작가: %author_name%"
+        rating: "§7평균 별점: %star_rating% (%rating_count%명)"
+        click_for_details: "§a클릭해서 자세히 보기"
+      prev_page_button: "§a이전 페이지"
+      next_page_button: "§a다음 페이지"
+      no_prev_page: "§7더 이상 이전 페이지가 없습니다."
+      no_next_page: "§7더 이상 다음 페이지가 없습니다."
+      sort_latest_button: "§b최신순 정렬"
+      sort_popular_button: "§b인기순 정렬"
+      current_sort_indicator: "§a현재 정렬 기준"
+    book_detail:
+      read_book_button: "§a책 읽기"
+      rate_book_button: "§b별점 주기"
+      back_button: "§a뒤로가기"
+      unpublish_button: "§c게시 해제"
+      unpublish_success: "§a책이 성공적으로 게시 해제되었습니다."
+      edit_button: "§e수정하기"
+      edit_start: "§a책 '%book_title%'을(를) 수정할 수 있도록 책을 지급했습니다. 수정을 완료하면 GUI에서 '수정 완료' 버튼을 눌러주세요."
+    rating:
+      star_item_name: "§e%rating%점 주기"
+      star_item_lore: "§7클릭하여 %rating%점 부여"
+      cancel_button: "§c취소"
+    edit_book:
+      confirm_button: "§a수정 완료"
+      cancel_button: "§c수정 취소"
+      no_book_in_hand: "§c손에 수정할 책(WRITTEN_BOOK 또는 WRITABLE_BOOK)을 들어주세요."
+      success: "§a책 ID %book_id%가 성공적으로 수정되었습니다."
+      cancel: "§e책 ID %book_id% 수정이 취소되었습니다."
+      error: "§c책 수정 중 오류가 발생했습니다: %error_message%"
+
+  admin:
+    player_only: "§c이 명령어는 플레이어만 사용할 수 있습니다."
+    usage: "§c사용법: /libadmin <reload|setreward|givebookreward>"
+    reloaded: "§a플러그인 설정이 리로드되었습니다."
+    setreward_usage: "§c사용법: /libadmin setreward <책_ID> <상태값 (0, 1, 2)>"
+    setreward_invalid_args: "§c유효하지 않은 인자입니다. 책 ID는 숫자, 상태값은 0, 1, 2 중 하나여야 합니다."
+    setreward_success: "§a책 ID %book_id%의 보상 상태가 %status%로 설정되었습니다."
+    setreward_error: "§c보상 상태 설정 중 오류가 발생했습니다: %error_message%"
+    givebookreward_usage: "§c사용법: /libadmin givebookreward <책_ID>"
+    givebookreward_invalid_args: "§c유효한 책 ID를 입력해주세요."
+    givebookreward_book_not_found: "§c책 ID %book_id%를 찾을 수 없습니다."
+    givebookreward_not_eligible: "§c책 ID %book_id%는 아직 보상 지급 조건(5점 보상)을 충족하지 않았습니다."
+    givebookreward_success: "§a책 '%book_title%'의 5점 보상이 %player_name%님에게 수동으로 지급되었습니다."
+    givebookreward_author_offline: "§c작가 %player_name%님이 오프라인이어서 보상을 지급할 수 없습니다."
+    givebookreward_error: "§c책 보상 수동 지급 중 오류가 발생했습니다: %error_message%"
+    unknown_command: "§c알 수 없는 관리자 명령어입니다."

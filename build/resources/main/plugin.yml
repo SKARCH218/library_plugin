@@ -1,0 +1,11 @@
+name: library_plugin
+version: '1.0-SNAPSHOT'
+main: lightstudio.library_plugin.Library_plugin
+api-version: '1.21'
+commands:
+  책:
+    description: 도서관에 책을 등록, 수정, 삭제합니다.
+    usage: /<command> <등록|수정|삭제>
+  도서관:
+    description: 도서관 GUI를 엽니다.
+    usage: /<command>

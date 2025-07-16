@@ -1,0 +1,15 @@
+rewards:
+  first_4_star:
+    commands:
+      - "give %player% diamond 1"
+      - "eco give %player% 1000"
+  five_star:
+    commands:
+      - "give %player% nether_star 1"
+      - "eco give %player% 5000"
+
+gui_titles:
+  library_gui_title: "§0도서관 (페이지: %page%)"
+  book_detail_gui_title: "§0책 정보: %book_title%"
+  rating_gui_title: "§0별점 주기: 책 ID %book_id%"
+  edit_book_gui_title: "§0책 수정: 책 ID %book_id%"
