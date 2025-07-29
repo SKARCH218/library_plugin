@@ -2,6 +2,8 @@ package lightstudio.library_plugin.events
 
 import lightstudio.library_plugin.Library_plugin
 import lightstudio.library_plugin.gui.GuiManager
+import lightstudio.library_plugin.gui.GuiType
+import lightstudio.library_plugin.gui.LibraryGuiHolder
 import lightstudio.library_plugin.manager.RatingManager
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
@@ -16,19 +18,30 @@ class GuiListener(private val plugin: Library_plugin, private val guiManager: Gu
 
     @EventHandler
     fun onInventoryClick(event: InventoryClickEvent) {
-        val viewTitle = event.view.title
         val player = event.whoClicked as Player
+        val clickedInventory = event.clickedInventory ?: return
+        val holder = clickedInventory.holder
 
-        val libraryGuiTitle = plugin.configManager.getGuiTitle("library_gui_title", "도서관 (페이지: %page%)").substringBefore(" (") // Get base title without page info
-        val bookDetailGuiTitle = plugin.configManager.getGuiTitle("book_detail_gui_title", "책 정보: %book_title%").substringBefore(": ") // Get base title without book title
-        val ratingGuiTitle = plugin.configManager.getGuiTitle("rating_gui_title", "별점 주기: 책 ID %book_id%").substringBefore(": ") // Get base title without book ID
-        val editBookGuiTitle = plugin.configManager.getGuiTitle("edit_book_gui_title", "책 수정: 책 ID %book_id%").substringBefore(": ") // Get base title without book ID
+        if (holder is LibraryGuiHolder) {
+            when (holder.guiType) {
+                GuiType.LIBRARY -> handleLibraryGuiClick(event, player)
+                GuiType.BOOK_DETAIL -> handleBookDetailGuiClick(event, player)
+                GuiType.RATING -> handleRatingGuiClick(event, player)
+                GuiType.EDIT_BOOK -> handleEditBookGuiClick(event, player)
+            }
+        }
+    }
 
-        when {
-            viewTitle.startsWith(libraryGuiTitle) -> handleLibraryGuiClick(event, player)
-            viewTitle.startsWith(bookDetailGuiTitle) -> handleBookDetailGuiClick(event, player)
-            viewTitle.startsWith(ratingGuiTitle) -> handleRatingGuiClick(event, player)
-            
+    private fun handleEditBookGuiClick(event: InventoryClickEvent, player: Player) {
+        if (event.clickedInventory != event.view.topInventory) return
+        event.isCancelled = true
+        val clickedItem = event.currentItem ?: return
+
+        val actionKey = plugin.namespacedKey("action")
+        val action = clickedItem.itemMeta?.persistentDataContainer?.get(actionKey, PersistentDataType.STRING)
+
+        when (action) {
+            // TODO: Implement edit book GUI click handling
         }
     }
 
@@ -111,7 +124,7 @@ class GuiListener(private val plugin: Library_plugin, private val guiManager: Gu
             "unpublish_book" -> {
                 val bookId = clickedItem.itemMeta?.persistentDataContainer?.get(plugin.namespacedKey("book_id"), PersistentDataType.INTEGER) ?: return
                 plugin.bookRepository.updateBookStatus(bookId, "UNPUBLISHED")
-                player.sendMessage(plugin.messageManager.getMessage("book_detail.unpublish_success"))
+                player.sendMessage(plugin.messageManager.getMessage("gui.book_detail.unpublish_success"))
                 player.closeInventory()
                 guiManager.openLibraryGui(player) // 도서관 GUI 새로고침
             }

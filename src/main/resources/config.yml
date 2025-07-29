@@ -13,3 +13,9 @@ gui_titles:
   book_detail_gui_title: "§0책 정보: %book_title%"
   rating_gui_title: "§0별점 주기: 책 ID %book_id%"
   edit_book_gui_title: "§0책 수정: 책 ID %book_id%"
+
+gui_settings:
+  # [고급 설정] 모든 GUI 아이템의 재료를 STRUCTURE_VOID로 강제 변경합니다. (책 제외)
+  # 커스텀 리소스팩을 사용하여 GUI 텍스처를 완전히 제어하고 싶을 때 유용합니다.
+  # true로 설정하면 아래 'material' 설정이 무시되고 모두 STRUCTURE_VOID로 표시됩니다.
+  items-all-structure-void: false

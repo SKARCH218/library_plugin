@@ -51,7 +51,9 @@ class Library_plugin : JavaPlugin() {
         getCommand("책")?.setExecutor(bookCommandExecutor)
         getCommand("책")?.setTabCompleter(bookCommandExecutor)
         getCommand("도서관")?.setExecutor(LibraryCommand(this, guiManager))
-        getCommand("libadmin")?.setExecutor(AdminCommand(this))
+        val adminCommandExecutor = AdminCommand(this)
+        getCommand("libadmin")?.setExecutor(adminCommandExecutor)
+        getCommand("libadmin")?.setTabCompleter(adminCommandExecutor)
 
         // 이벤트 리스너 등록
         server.pluginManager.registerEvents(lightstudio.library_plugin.events.GuiListener(this, guiManager, ratingManager), this)

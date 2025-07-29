@@ -9,3 +9,6 @@ commands:
   도서관:
     description: 도서관 GUI를 엽니다.
     usage: /<command>
+  libadmin:
+    description: 도서관 플러그인 관리자 명령어.
+    usage: /<command> <reload|setreward|givebookreward>
